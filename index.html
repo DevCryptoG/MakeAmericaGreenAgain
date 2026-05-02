@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$MAGA - Make America Green Again</title>
+    <style>
+        /* Modern CSS Reset & Variables */
+        :root {
+            --bg-color: #051405; /* Dark forest green almost black */
+            --text-color: #f0fdf4;
+            --accent-green: #39ff14; /* Neon green */
+            --glass-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(5, 20, 5, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--accent-green);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, #113311 0%, var(--bg-color) 70%);
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+        }
+
+        .hero h1 span {
+            color: var(--accent-green);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            color: #a3b8a3;
+        }
+
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-green);
+            color: #000;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--accent-green);
+        }
+
+        .btn-secondary:hover {
+            background: var(--glass-bg);
+            transform: translateY(-3px);
+        }
+
+        /* Sections General */
+        section {
+            padding: 100px 10%;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--accent-green);
+        }
+
+        /* About Section (Grid layout) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        /* Image Placeholder Style */
+        .image-placeholder img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.2);
+            border: 1px solid rgba(57, 255, 20, 0.3);
+        }
+
+        /* Glass Cards (Tokenomics) */
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-green);
+        }
+
+        .glass-card h3 {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 15px;
+        }
+
+        /* Animations (The "Movements") */
+        .hidden {
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .show {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #000;
+            border-top: 1px solid #113311;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .tokenomics-grid { grid-template-columns: 1fr; }
+            nav ul { display: none; } /* Simplified for mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo">$MAGA</a>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#tokenomics">Tokenomics</a></li>
+            <li><a href="#donations">Donations</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero hidden">
+        <h1>Make America <span>Green</span> Again</h1>
+        <p>The first memecoin dedicated to saving the planet. Trade, hold, and help us donate to <strong>Green America</strong> to plant trees and support sustainable initiatives.</p>
+        <div class="btn-container">
+            <!-- Poner aquí el link de Pump.fun o Raydium donde se compre -->
+            <a href="#" class="btn btn-primary">Buy $MAGA</a>
+            <!-- Poner aquí enlace a Telegram o Twitter -->
+            <a href="#" class="btn btn-secondary">Join Community</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-grid">
+            <div class="hidden">
+                <h2>Our Mission</h2>
+                <p style="font-size: 1.2rem; line-height: 1.8; color: #a3b8a3; margin-bottom: 20px;">
+                    We believe the crypto ecosystem can be a force for good. $MAGA isn't just about making gains; it's about making an impact. 
+                </p>
+                <p style="font-size: 1.2rem; line-height: 1.8; color: #a3b8a3;">
+                    At specific market cap milestones, a portion of our dev wallet is directly donated to <strong>Green America</strong>. We provide verifiable proof of every donation. Green charts, green planet.
+                </p>
+            </div>
+            <div class="image-placeholder hidden">
+               
+                <img src="maga-logo.png" alt="MAGA Make America Green Again Logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section id="tokenomics">
+        <h2 class="hidden">Tokenomics</h2>
+        <div class="tokenomics-grid">
+            <div class="glass-card hidden">
+                <h3>0%</h3>
+                <p>Buy / Sell Taxes</p>
+            </div>
+            <div class="glass-card hidden">
+                <h3>100%</h3>
+                <p>Liquidity Pool Burned</p>
+            </div>
+            <div class="glass-card hidden">
+                <h3>X%</h3>
+                <p>Reserved for Green America Donations</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donations Proof Section -->
+    <section id="donations" style="text-align: center; background: radial-gradient(circle, #0a290a 0%, var(--bg-color) 100%);">
+        <h2 class="hidden">Donation Proofs</h2>
+        <p class="hidden" style="color: #a3b8a3; max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1rem;">
+            Transparency is our priority. Every time we hit a market cap milestone, we donate to Green America and post the transaction receipts right here.
+        </p>
+        <div class="image-placeholder hidden" style="max-width: 500px; margin: auto;">
+            <!-- PON TU FOTO AQUÍ: Aquí puedes poner una captura falsa de "Próximamente" o recibos reales después -->
+            <img src="sprout-growth.png" alt="MAGA Sprout Growth Donations">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p style="color: #666;">© 2026 $MAGA - Make America Green Again. This token is a community-driven project and is not officially affiliated with Green America. Cryptocurrency investments carry high risk.</p>
+    </footer>
+
+    <!-- JavaScript para las animaciones "modernas" de Scroll -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1 // Activa la animación cuando el 10% del elemento es visible
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
