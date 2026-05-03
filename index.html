@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$MAGA - Haz que América sea Goober de Nuevo</title>
+    <title>$MAGA - Make America Green Again | The Chill Ecocoin</title>
     <style>
         /* Modern CSS Reset & Variables */
         :root {
-            --bg-color: #051405; /* Dark forest green almost black */
+            --bg-color: #051405; /* Deep forest black */
             --text-color: #f0fdf4;
-            --accent-green: #39ff14; /* Neon green */
-            --accent-pink: #ff14e3; /* Neon Pink pop */
-            --glass-bg: rgba(255, 255, 255, 0.05);
+            --accent-green: #39ff14; /* Toxic/Neon green for that crypto vibe */
+            --accent-light: #8aff8a;
+            --glass-bg: rgba(57, 255, 20, 0.05);
         }
 
         * {
@@ -29,22 +29,27 @@
             position: relative;
         }
 
-        /* Floating background icons */
-        .goob-icon {
+        /* Floating Eco-Leaves Background */
+        .leaf-icon {
             position: fixed;
-            width: 30px;
-            height: 30px;
-            opacity: 0.2;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-green);
+            /* This border radius makes a perfect simple leaf shape! */
+            border-radius: 0 50% 50% 50%;
+            opacity: 0.15;
             pointer-events: none;
             z-index: 0;
-            animation: float 15s infinite ease-in-out;
+            animation: float 15s infinite linear;
+            box-shadow: 0 0 20px var(--accent-green);
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(100px, 50px) rotate(15deg); }
-            50% { transform: translate(50px, 150px) rotate(-10deg); }
-            75% { transform: translate(-50px, 100px) rotate(5deg); }
+            0% { transform: translateY(110vh) translateX(0) rotate(45deg); opacity: 0; }
+            10% { opacity: 0.15; }
+            50% { transform: translateY(50vh) translateX(100px) rotate(180deg); }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-10vh) translateX(-50px) rotate(360deg); opacity: 0; }
         }
 
         /* Navigation */
@@ -63,16 +68,17 @@
         }
 
         nav .logo {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 900;
             color: var(--accent-green);
             text-decoration: none;
             letter-spacing: 2px;
-            transition: transform 0.3s;
+            transition: transform 0.3s, text-shadow 0.3s;
         }
 
         nav .logo:hover {
-            transform: scale(1.1) rotate(-5deg);
+            transform: scale(1.1) rotate(-3deg);
+            text-shadow: 0 0 15px var(--accent-green);
         }
 
         nav ul {
@@ -84,12 +90,13 @@
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: bold;
+            transition: all 0.3s;
         }
 
         nav ul li a:hover {
             color: var(--accent-green);
+            text-shadow: 0 0 10px var(--accent-green);
         }
 
         /* Hero Section */
@@ -101,7 +108,7 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            background: radial-gradient(circle at center, #113311 0%, var(--bg-color) 70%);
+            background: radial-gradient(circle at center, #0a290a 0%, var(--bg-color) 70%);
             position: relative;
             z-index: 1;
         }
@@ -111,11 +118,11 @@
             text-transform: uppercase;
             margin-bottom: 20px;
             text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
-            transition: transform 0.2s;
+            transition: transform 0.3s ease;
         }
 
         .hero h1:hover {
-            transform: scale(1.05) rotate(1deg);
+            transform: scale(1.05);
         }
 
         .hero h1 span {
@@ -123,11 +130,12 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
+            font-size: 1.3rem;
+            max-width: 650px;
             margin-bottom: 40px;
             line-height: 1.6;
             color: #a3b8a3;
+            font-weight: 500;
         }
 
         /* Buttons */
@@ -142,13 +150,15 @@
         .btn {
             padding: 15px 40px;
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 900;
             border-radius: 50px;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
             z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-primary {
@@ -158,94 +168,106 @@
         }
 
         .btn-primary:hover {
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.8);
-            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 40px rgba(57, 255, 20, 0.8);
+            transform: translateY(-5px) scale(1.05);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--text-color);
+            color: var(--accent-green);
             border: 2px solid var(--accent-green);
         }
 
         .btn-secondary:hover {
             background: var(--glass-bg);
-            transform: translateY(-3px);
-            border-color: var(--accent-pink);
-            color: var(--accent-pink);
+            transform: translateY(-5px);
+            box-shadow: inset 0 0 15px rgba(57, 255, 20, 0.2);
         }
 
         /* Pop-up bubble */
-        .goob-bubble {
+        .meme-bubble {
             position: absolute;
-            top: -60px;
+            top: -50px;
             left: 50%;
             transform: translateX(-50%) scale(0);
-            background: var(--accent-pink);
+            background: var(--text-color);
             color: #000;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 20px;
             font-weight: bold;
             opacity: 0;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             pointer-events: none;
             white-space: nowrap;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
-        .btn-container:hover .goob-bubble {
-            transform: translateX(-50%) scale(1);
+        .btn-primary:hover ~ .meme-bubble {
+            transform: translateX(-120%) scale(1);
             opacity: 1;
         }
 
         /* Sections General */
         section {
-            padding: 100px 10%;
+            padding: 120px 10%;
             position: relative;
             z-index: 1;
         }
 
         h2 {
-            font-size: 3rem;
-            margin-bottom: 50px;
+            font-size: 3.5rem;
+            margin-bottom: 40px;
             text-align: center;
             color: var(--accent-green);
-            transition: text-shadow 0.3s;
+            text-transform: uppercase;
         }
 
-        h2:hover {
-            text-shadow: 0 0 15px var(--accent-pink);
-        }
-
-        /* About Section (Grid layout) */
+        /* About Section */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
         }
 
+        .eco-card {
+            background: rgba(10, 40, 10, 0.5);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(57, 255, 20, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .eco-card p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #bcebbc;
+            margin-bottom: 20px;
+        }
+
         /* Image Placeholder Style */
-        .image-placeholder img {
+        .image-container img {
             width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.2);
-            border: 1px solid rgba(57, 255, 20, 0.3);
-            transition: transform 0.5s ease;
+            border-radius: 30px;
+            box-shadow: 0 0 40px rgba(57, 255, 20, 0.15);
+            border: 2px solid rgba(57, 255, 20, 0.3);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
 
-        .image-placeholder img:hover {
+        .image-container img:hover {
             transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 0 60px rgba(57, 255, 20, 0.4);
         }
 
-        /* Animations (The "Movements") */
-        .hidden {
+        /* Animations (Slide & Fade) */
+        .slide-up {
             opacity: 0;
             filter: blur(5px);
-            transform: translateY(50px);
-            transition: all 1s ease;
+            transform: translateY(80px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .show {
+        .slide-up.show {
             opacity: 1;
             filter: blur(0);
             transform: translateY(0);
@@ -255,75 +277,81 @@
         footer {
             text-align: center;
             padding: 40px;
-            background: #000;
-            border-top: 1px solid #113311;
+            background: #020802;
+            border-top: 1px solid rgba(57, 255, 20, 0.2);
             position: relative;
             z-index: 1;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
+            .hero h1 { font-size: 3.5rem; }
             .about-grid { grid-template-columns: 1fr; }
-            nav ul { display: none; } /* Simplified for mobile */
+            nav ul { display: none; }
             nav { padding: 15px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Floating Background Icons -->
-    <svg class="goob-icon" style="top: 10%; left: 10%;" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="var(--accent-green)"/></svg>
-    <svg class="goob-icon" style="top: 20%; left: 80%; animation-delay: 2s;" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="var(--accent-pink)"/></svg>
-    <svg class="goob-icon" style="top: 60%; left: 30%; animation-delay: 5s;" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="var(--accent-green)"/></svg>
-    <svg class="goob-icon" style="top: 80%; left: 70%; animation-delay: 7s;" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="var(--accent-pink)"/></svg>
+    <!-- Floating Leaves -->
+    <div class="leaf-icon" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="leaf-icon" style="left: 30%; animation-duration: 12s; animation-delay: 2s; transform: scale(0.6);"></div>
+    <div class="leaf-icon" style="left: 70%; animation-duration: 18s; animation-delay: 5s;"></div>
+    <div class="leaf-icon" style="left: 85%; animation-duration: 14s; animation-delay: 1s; transform: scale(0.8);"></div>
+    <div class="leaf-icon" style="left: 50%; animation-duration: 16s; animation-delay: 7s; transform: scale(1.2);"></div>
 
     <!-- Navigation Bar -->
     <nav>
         <a href="#" class="logo">$MAGA</a>
         <ul>
-            <li><a href="#about">¿Qué es esto?</a></li>
-            <li><a href="#">Goober Hub</a></li>
-        }
+            <li><a href="#about">Eco-Lore</a></li>
+            <li><a href="https://pump.fun/" target="_blank">Touch Grass (Buy)</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero hidden">
-        <h1>Haz que América sea <br><span>Goober</span> de Nuevo</h1>
-        <p>Deja de pensar. Empieza a vibrar. El movimiento $MAGA no es una misión, es un estado mental de pura alegría simple. No plantamos árboles, cultivamos sonrisas.</p>
+    <header class="hero slide-up">
+        <h1>Make America <br><span>Green</span> Again</h1>
+        <p>The ultimate chill ecocoin. We don't stress about the charts; we just vibe, touch grass, and enjoy the green candles. 100% organic meme energy.</p>
         <div class="btn-container">
-            <!-- Interactivity with bubble -->
-            <div class="goob-bubble">¡SÍ GOOB SÍ!</div>
-            <a href="#" class="btn btn-primary" onclick="alert('¡Has abrazado al Goober!')">Abraza al Goober</a>
-            <a href="#about" class="btn btn-secondary">Ver Galería Goober</a>
+            <a href="https://pump.fun/coin/6KyTx67ga3VsEz3ntJ5P337SDjEjZNVP7J3uvNQPpump" target="_blank" class="btn btn-primary">Plant a Bag</a>
+            <div class="meme-bubble">🍃 Pure Vibes!</div>
+            <a href="#about" class="btn btn-secondary">Read the Lore</a>
         </div>
     </header>
 
     <!-- About Section -->
     <section id="about">
         <div class="about-grid">
-            <div class="hidden">
-                <h2>¿Qué es un Goober?</h2>
-                <p style="font-size: 1.2rem; line-height: 1.8; color: #a3b8a3; margin-bottom: 20px;">
-                    Es un estilo de vida. Un Goober es alguien que encuentra alegría en lo simple, que no se toma nada en serio y que cree firmemente en el poder de las vibraciones positivas. Olvida las responsabilidades de adultos por un momento.
+            <div class="eco-card slide-up">
+                <h2>What is an Ecocoin?</h2>
+                <p>
+                    Listen, the world is chaotic enough. $MAGA isn't here to save the polar bears with complex tokenomics. We are here to save <strong>your vibes</strong>. 
                 </p>
-                <p style="font-size: 1.2rem; line-height: 1.8; color: #a3b8a3;">
-                    Nuestra colaboración es con la pura diversión. Cada 'goob' es una sonrisa, cada trade es un recordatorio de que la vida no tiene por qué ser tan seria. Gráficos verdes, planetas verdes... Nah, solo vibes verdes. Únete a la Conciencia Goober compartida.
+                <p>
+                    We are the most relaxed ecocoin on the blockchain. What's our utility? Making your portfolio look like a beautiful, lush forest. No promises, no dev stress, just pure community energy. 
+                </p>
+                <p>
+                    So close your laptop, go outside, touch some literal grass, and let the green memes flow. 
                 </p>
             </div>
-            <div class="image-placeholder hidden">
-                <img src="image_0.png" alt="MAGA Haz que América sea Goober de Nuevo Logo">
+            <div class="image-container slide-up">
+                <!-- Ensure maga-logo.png is in the same folder as your HTML file -->
+                <img src="maga-logoo.png" alt="MAGA Ecocoin Chill Logo">
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p style="color: #666;">© 2026 $MAGA - Haz que América sea Goober de Nuevo. Esta página es pura diversión y entretenimiento. Las vibraciones son altas, el pensamiento es bajo. </p>
+        <p style="color: #4a6b4a; font-size: 0.9rem;">
+            © 2026 $MAGA - Make America Green Again. <br>
+            Disclaimer: This is a meme coin. It has no intrinsic value, no formal team, and promises no financial return. Just an ecocoin for the culture. Don't invest your life savings, just chill.
+        </p>
     </footer>
 
-    <!-- JavaScript para las animaciones "modernas" de Scroll -->
+    <!-- Scroll Animations Script -->
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
@@ -332,10 +360,10 @@
                 }
             });
         }, {
-            threshold: 0.1 // Activa la animación cuando el 10% del elemento es visible
+            threshold: 0.15 
         });
 
-        const hiddenElements = document.querySelectorAll('.hidden');
+        const hiddenElements = document.querySelectorAll('.slide-up');
         hiddenElements.forEach((el) => observer.observe(el));
     </script>
 </body>
