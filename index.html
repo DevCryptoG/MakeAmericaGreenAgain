@@ -1,261 +1,438 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$MAGA - Make America Green Again</title>
-    <style>
-        /* Modern CSS Reset & Variables */
-        :root {
-            --bg-color: #051405; /* Dark forest green almost black */
-            --text-color: #f0fdf4;
-            --accent-green: #39ff14; /* Neon green */
-            --glass-bg: rgba(255, 255, 255, 0.05);
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$MAGA - MAKE AMERICA GREEN (WIF GAINS) AGAIN</title>
+    <style>
+        /* Modern CSS Reset & Variables (Añadiendo más caos y neón) */
+        :root {
+            --bg-color: #051405; /* Fondo oscuro original */
+            --text-color: #f0fdf4;
+            --accent-green: #39ff14; /* Neon green original */
+            --accent-pink: #ff00ff; /* Neon pink caos */
+            --accent-blue: #00ffff; /* Neon blue internet antiguo */
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --font-header: 'Impact', fantasy;
+            --font-body: 'Comic Sans MS', cursive, sans-serif;
+        }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
-        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            cursor: none; /* Ocultar el cursor por defecto para el efecto Pepe */
+        }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at center, #113311 0%, #000 100%);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+        }
 
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            background: rgba(5, 20, 5, 0.8);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(57, 255, 20, 0.2);
-        }
+        /* Cursor Pepe-Regadera (El toque interactivo principal) */
+        #pepe-cursor {
+            width: 40px;
+            height: 40px;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            background-image: url('https://i.ibb.co/Vgnr8C3/pepe-watering-can.png'); /* URL ficticia para Pepe Regadera */
+            background-size: contain;
+            background-repeat: no-repeat;
+            display: none; /* Se activa con JS */
+        }
 
-        nav .logo {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--accent-green);
-            text-decoration: none;
-            letter-spacing: 2px;
-        }
+        /* Navigation (Más vibrante) */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 2000;
+            border-bottom: 2px solid var(--accent-green);
+            box-shadow: 0 0 15px var(--accent-green);
+        }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+        nav .logo {
+            font-size: 32px;
+            font-family: var(--font-header);
+            font-weight: 900;
+            color: #000;
+            background-color: var(--accent-green);
+            text-decoration: none;
+            letter-spacing: -1px;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+        nav .logo:hover {
+            background-color: var(--accent-pink);
+            box-shadow: 0 0 25px var(--accent-pink);
+            transform: scale(1.1) rotate(-5deg);
+        }
 
-        nav ul li a:hover {
-            color: var(--accent-green);
-        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            background: radial-gradient(circle at center, #113311 0%, var(--bg-color) 70%);
-        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 900;
+            font-family: var(--font-header);
+            transition: color 0.3s;
+            text-transform: uppercase;
+        }
 
-        .hero h1 {
-            font-size: 5rem;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
-        }
+        nav ul li a:hover {
+            color: var(--accent-green);
+        }
 
-        .hero h1 span {
-            color: var(--accent-green);
-        }
+        /* Hero Section (Caos Eco-Meme) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 40px;
-            line-height: 1.6;
-            color: #a3b8a3;
-        }
+        /* Efecto de fondo de partículas Eco-Meme */
+        .hero-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-image: url('https://i.ibb.co/1Z1QhC7/eco-meme-particles.png'); /* Partículas Eco-Meme ficticias */
+            opacity: 0.3;
+        }
 
-        /* Buttons */
-        .btn-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .hero h1 {
+            font-size: 7rem;
+            font-family: var(--font-header);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            line-height: 0.9;
+            letter-spacing: -2px;
+            color: #000;
+            background-color: var(--accent-green);
+            padding: 10px 30px;
+            border-radius: 10px;
+            transform: rotate(-3deg);
+            box-shadow: 0 0 40px var(--accent-green);
+        }
 
-        .btn {
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 50px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+        .hero h1 span {
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent-pink);
+        }
 
-        .btn-primary {
-            background-color: var(--accent-green);
-            color: #000;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
-        }
+        .hero p {
+            font-size: 1.8rem;
+            max-width: 700px;
+            margin-bottom: 50px;
+            line-height: 1.4;
+            color: #a3b8a3;
+            transform: rotate(1deg);
+        }
 
-        .btn-primary:hover {
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.8);
-            transform: translateY(-3px);
-        }
+        /* Contador de "Árboles Plantados" (Interactividad exagerada) */
+        .tree-counter {
+            background: #000;
+            border: 4px solid var(--accent-green);
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-family: var(--font-header);
+            font-size: 2rem;
+            color: var(--accent-green);
+            margin-bottom: 40px;
+            box-shadow: 0 0 30px var(--accent-green);
+            transform: scale(1.1) rotate(-1deg);
+        }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-color);
-            border: 2px solid var(--accent-green);
-        }
+        .tree-counter span {
+            color: var(--accent-pink);
+        }
 
-        .btn-secondary:hover {
-            background: var(--glass-bg);
-            transform: translateY(-3px);
-        }
+        /* Buttons (Caos neón exagerado) */
+        .btn-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-        /* Sections General */
-        section {
-            padding: 100px 10%;
-        }
+        .btn {
+            padding: 18px 45px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            font-family: var(--font-header);
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
 
-        h2 {
-            font-size: 3rem;
-            margin-bottom: 50px;
-            text-align: center;
-            color: var(--accent-green);
-        }
+        .btn-primary {
+            background-color: var(--accent-green);
+            color: #000;
+            border: 2px solid var(--accent-green);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.6);
+        }
 
-        /* About Section (Grid layout) */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
+        .btn-primary:hover {
+            box-shadow: 0 0 40px var(--accent-green);
+            transform: translateY(-5px) rotate(2deg);
+            color: #fff;
+        }
 
-        /* Image Placeholder Style */
-        .image-placeholder img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.2);
-            border: 1px solid rgba(57, 255, 20, 0.3);
-        }
+        .btn-secondary {
+            background: #000;
+            color: var(--accent-green);
+            border: 4px solid var(--accent-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+        }
 
-        /* Animations (The "Movements") */
-        .hidden {
-            opacity: 0;
-            filter: blur(5px);
-            transform: translateY(50px);
-            transition: all 1s ease;
-        }
+        .btn-secondary:hover {
+            background: rgba(255, 0, 255, 0.1);
+            box-shadow: 0 0 40px var(--accent-pink);
+            transform: translateY(-5px) rotate(-2deg);
+        }
 
-        .show {
-            opacity: 1;
-            filter: blur(0);
-            transform: translateY(0);
-        }
+        /* Sections General (Mas estrechas y ruidosas) */
+        section {
+            padding: 80px 8%;
+            position: relative;
+        }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: #000;
-            border-top: 1px solid #113311;
-        }
+        h2 {
+            font-size: 5rem;
+            font-family: var(--font-header);
+            margin-bottom: 40px;
+            text-align: center;
+            color: #000;
+            background-color: var(--accent-green);
+            padding: 10px 30px;
+            border-radius: 5px;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+        }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .about-grid { grid-template-columns: 1fr; }
-            nav ul { display: none; } /* Simplified for mobile */
-        }
-    </style>
+        /* About Section (Grid, Tono de Meme) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-grid p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #a3b8a3;
+            margin-bottom: 20px;
+        }
+
+        .about-grid strong {
+            color: var(--accent-pink);
+        }
+
+        /* Image/Logo Placeholder Style (Nuevo Logo-Meme Eco) */
+        .image-placeholder {
+            position: relative;
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 40px rgba(57, 255, 20, 0.4);
+            border: 4px solid var(--accent-green);
+            transform: rotate(2deg);
+            transition: all 0.3s ease;
+        }
+
+        .image-placeholder img:hover {
+            transform: rotate(-2deg) scale(1.05);
+            box-shadow: 0 0 60px rgba(57, 255, 20, 0.8);
+        }
+
+        /* Generador de Memes Simple (Interactividad extra) */
+        #meme-generator {
+            margin-top: 50px;
+            text-align: center;
+            background: #000;
+            padding: 30px;
+            border: 4px solid var(--accent-pink);
+            border-radius: 10px;
+        }
+
+        #meme-generator h3 {
+            font-family: var(--font-header);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-pink);
+        }
+
+        #meme-generator input {
+            padding: 10px;
+            font-size: 1.2rem;
+            font-family: var(--font-body);
+            width: 80%;
+            max-width: 400px;
+            border: 2px solid var(--accent-pink);
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #meme-generator button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            font-family: var(--font-header);
+            background-color: var(--accent-pink);
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        /* Footer (Con toque de meme) */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #000;
+            border-top: 2px solid #113311;
+            font-family: var(--font-header);
+            color: var(--accent-green);
+        }
+
+        footer strong { color: var(--accent-pink); }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .hero h1 { font-size: 4rem; padding: 5px 20px; }
+            h2 { font-size: 3rem; }
+            .about-grid { grid-template-columns: 1fr; text-align: center;}
+            .tree-counter { font-size: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="#" class="logo">$MAGA</a>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="https://greenamerica.org/" target="_blank">Green America Official</a></li>
-        </ul>
-    </nav>
+    <!-- Elemento de Cursor Pepe -->
+    <div id="pepe-cursor"></div>
 
-    <!-- Hero Section -->
-    <header class="hero hidden">
-        <h1>Make America <span>Green</span> Again</h1>
-        <p>Trade and help us donate to <strong>Green America</strong> to plant trees and support sustainable initiatives.</p>
-        <div class="btn-container">
-            <!-- Enlace a Pump.fun -->
-            <a href="https://pump.fun/coin/6KyTx67ga3VsEz3ntJ5P337SDjEjZNVP7J3uvNQPpump" target="_blank" class="btn btn-primary">Buy on Pump.fun</a>
-            <!-- Enlace a Green America -->
-            <a href="https://greenamerica.org/" target="_blank" class="btn btn-secondary">Visit Green America</a>
-        </div>
-    </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo">$MAGA</a>
+        <ul>
+            <li><a href="#about">Misión Eco-Meme</a></li>
+            <li><a href="https://greenamerica.org/" target="_blank">Árboles Reales (DYOR)</a></li>
+            <li><a href="https://pump.fun/coin/6KyTx67ga3VsEz3ntJ5P337SDjEjZNVP7J3uvNQPpump" target="_blank" class="btn btn-primary" style="padding: 10px; font-size: 1rem;">COMPRAR WIF CAOS</a></li>
+        </ul>
+    </nav>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="about-grid">
-            <div class="hidden">
-                <h2>Our Mission</h2>
-                <p style="font-size: 1.2rem; line-height: 1.8; color: #a3b8a3; margin-bottom: 20px;">
-                    We believe the crypto ecosystem can be a force for good. $MAGA isn't just about making gains; it's about making a real environmental impact. 
-                </p>
-                <p style="font-size: 1.2rem; line-height: 1.8; color: #a3b8a3;">
-                    Through our collaboration with <strong>donate.gg</strong>, a portion of our transaction fees is automatically and transparently routed to <strong>Green America</strong>. Every time you trade, you are directly funding sustainable initiatives and helping restore ecosystems. Green charts, green planet.
-                </p>
-            </div>
-            <div class="image-placeholder hidden">
-                <img src="maga-logo.png" alt="MAGA Make America Green Again Logo">
-            </div>
-        </div>
-    </section>
+    <!-- Hero Section (Caos Eco-Meme) -->
+    <header class="hero">
+        <div class="hero-particles"></div>
+        <h1>$MAGA: MAKE AMERICA GREEN (WIF GAINS) AGAIN</h1>
+        <p>Olvídate de los rugpulls secos. Únete al Ejército Eco-Meme de $MAGA. Cultivamos <strong>árboles digitales</strong> que te hacen ganar <strong>dinero real</strong> (kinda, maybe, dyor lol). 100% resistente al rug (trust me bro).</p>
+        
+        <!-- Contador de Árboles Plantados (Caos) -->
+        <div class="tree-counter">
+            Árboles Plantados (allegedly): 🍃 <span id="fake-tree-count">69,420,000</span>
+        </div>
 
-    <!-- Footer -->
-    <footer>
-        <p style="color: #666;">© 2026 $MAGA - Make America Green Again. This token is a community-driven project and is not officially affiliated with Green America. Cryptocurrency investments carry high risk.</p>
-    </footer>
+        <div class="btn-container">
+            <!-- Enlace a Pump.fun -->
+            <a href="https://pump.fun/coin/6KyTx67ga3VsEz3ntJ5P337SDjEjZNVP7J3uvNQPpump" target="_blank" class="btn btn-primary">BUY ON PUMP.FUN (SEND IT)</a>
+            <!-- Enlace a Green America -->
+            <a href="https://greenamerica.org/" target="_blank" class="btn btn-secondary">Visit Green America (The Normie Way)</a>
+        </div>
+    </header>
 
-    <!-- JavaScript para las animaciones "modernas" de Scroll -->
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, {
-            threshold: 0.1 // Activa la animación cuando el 10% del elemento es visible
-        });
+    <!-- About Section (Tono de Meme) -->
+    <section id="about">
+        <div class="about-grid">
+            <div>
+                <h2>NUESTRA MISIÓN ECO-TERRORISTA (En Minecraft)</h2>
+                <p>
+                    Creemos que el ecosistema cripto está jodidamente seco. $MAGA no es solo para hacer *gains* (aunque sí, *gains*), es para hacer un impacto ambiental real (porque si no, ¿dónde vas a gastar tus millones?).
+                </p>
+                <p>
+                    Cada vez que haces un trade de $MAGA (wif gaos), un Pepe recibe sus alas... digo, un árbol se planta en la vida real. Una parte de cada transacción se envía automáticamente y de forma transparente (puedes verificarlo en el explorer, no somos estafadores lol) a <strong>Green America</strong> para plantar árboles reales y salvar el planeta de los boomers. Gráficos verdes, planeta verde, billeteras verdes. WAGMI.
+                </p>
+            </div>
+            <div class="image-placeholder">
+                <img src="image_0.png" alt="MAGA Make America Green Again Logo Eco-Meme con Pepe">
+            </div>
+        </div>
 
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => observer.observe(el));
-    </script>
+        <!-- Generador de Memes (Caos Interactividad) -->
+        <div id="meme-generator">
+            <h3>Generador de Eco-Memes $MAGA (Beta lol)</h3>
+            <input type="text" id="meme-text-input" placeholder="Tu texto de meme aquí... (ej. ¿Is this a rug?)">
+            <button id="meme-generate-btn">GENERAR CAOS VERDE</button>
+            <p style="font-size: 1rem; color: #666; margin-top: 10px;">(Por ahora, solo actualiza tu imaginación. Es una beta de un solo hombre)</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 <strong>$MAGA: Make America Green (Wif Gains) Again</strong>.</p>
+        <p style="font-size: 0.9rem; color: #444; margin-top: 10px;">Este token es un proyecto impulsado por la comunidad y no está afiliado oficialmente con Green America (todavía, lol). DYOR. Rugs are bad for the trees. Cryptocurrency is risky.</p>
+    </footer>
+
+    <script>
+        // JavaScript para el Cursor Pepe-Regadera
+        const pepeCursor = document.getElementById('pepe-cursor');
+        document.addEventListener('mousemove', (e) => {
+            pepeCursor.style.display = 'block'; // Activar al mover
+            pepeCursor.style.left = e.clientX + 'px';
+            pepeCursor.style.top = e.clientY + 'px';
+        });
+
+        // JavaScript para el Contador Exagerado de Árboles Plantados
+        const fakeTreeCountElement = document.getElementById('fake-tree-count');
+        let initialCount = 69420000;
+        setInterval(() => {
+            initialCount += Math.floor(Math.random() * 69); // Aumentar caóticamente
+            fakeTreeCountElement.textContent = initialCount.toLocaleString('en-US');
+        }, 1500);
+
+        // JavaScript para el Generador de Memes (Funcionalidad Beta de un solo hombre)
+        const memeGenerateBtn = document.getElementById('meme-generate-btn');
+        const memeTextInput = document.getElementById('meme-text-input');
+        memeGenerateBtn.addEventListener('click', () => {
+            const text = memeTextInput.value;
+            if (text) {
+                alert(`"$MAGA: ${text}" - Meme generado exitosamente en tu imaginación. Envía 0.1 SOL a una dirección ficticia para reclamarlo (No lo hagas).`);
+            } else {
+                alert('Primero escribe tu texto eco-meme, Normie.');
+            }
+        });
+    </script>
 </body>
 </html>
